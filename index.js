@@ -55,7 +55,7 @@ function addToCart(productName, quantity) {
     }
 }
 
-// AGREGO 3 PRODUCTOS AL CARRITO
+// AGREGO 3 PRODUCTOS AL CARRITO CON SUS CANTIDADES
 
 addToCart('ieltsCourse', 3);
 addToCart('consultancy', 2);
@@ -73,7 +73,7 @@ for (const product of cart) {
 function calculateTotal(cart) {
     let total = 0;
     for (const product of cart) {
-        total += product.cost * product.quantity; // Aplica la cantidad
+        total += product.cost * product.quantity; 
     }
     return total;
 }
