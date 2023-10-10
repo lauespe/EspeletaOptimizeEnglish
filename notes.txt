@@ -1,0 +1,106 @@
+// CTTROL + K + C
+
+function getTotal (product, quantity) {
+      return product*quantity;
+}
+getTotal()
+console.log(getTotal(30,2))
+
+function getTotal (product1, product2) {
+    return product1+product2;
+}
+getTotal()
+console.log(getTotal(30,3))
+
+// let total2=0;
+
+// function getTotal2 (product1, product2, product3){
+//     Total2= product1+product2+product3
+// }
+// getTotal2()
+// console.log("Total: "+ total2)
+
+// function getTotal2 (product1, product2, product3){
+//    return product1 + product2 + product3
+// }
+
+// console.log(getTotal2(3,4,2))
+
+
+// let getTotal = (product, quantity) => {return (product*quantity)}
+
+// console.log(getTotal(30, 3))
+
+//no olvidearse el retun, y pasar los valores en los parametros al llamar a la funcion
+
+// function thank () {
+//     return "The purchase is finished. Thanks for trusting our products!"
+// }
+// console.log(thank())
+
+//const thank = () => {return "Thanks for buying!";};
+//console.log(thank())
+
+// dos veces hay que escribir =; el return va adentro de la llave sin =; dentro del console.log la llamo con ()  - doble parentesis
+
+
+//objeto literal -----------------------------
+// const product1 = {
+//     name: "ielts",
+//     duration: "3 months",
+//     cost: "$300"
+// } 
+// console.log(product1.cost)
+// console.log(product1.name)
+// console.log(product1["cost"])
+
+// funcion contructora -----------------------OK!!
+
+// function Product(name, duration, cost) {
+//     this.name = name;
+//     this.duration = duration;
+//     this.cost = cost;
+// }
+
+// const ieltsCourse = new Product("IELTS course", "3 months", "$40");
+// const ieltsCoursex2 = new Product("IELTS x2", "3 months", "$75");
+// const writingCorrection = new Product("Writing Correction", "", "$20");
+// const speakingSession = new Product("SpeakingSession", "1 hour", "$20");
+// const consultancy = new Product("One-to-one Consultancy", "1 hour", "$25");
+// const writingGuide = new Product("Writing Guide", "", "$");
+
+// console.log(ieltsCourse.cost);
+// console.log(ieltsCoursex2.duration);
+// console.log(writingCorrection.name);
+// console.log(speakingSession.cost);
+// console.log(consultancy.cost);
+// console.log(writingGuide.name);
+
+
+// clases ------------------------------------OKKKK
+
+ class Product {
+     constructor(name, level, duration,cost) {
+             this.name = name;
+             this.duration = duration;
+             this.cost = cost;
+     }
+     sayGoodbye = () => {return "Thanks for buying!"}
+     calculateTotal = (product1, product2) => {return product1 + product2}
+     
+ }
+  
+ let  ieltsCourse = new Product("IELTS Course", "3 moths", "300");
+ let  ieltsCoursex2 = new Product("IELTS x2", "3 months", "40");
+ let  writingCorrection = new Product("Writing Correction", "", "40");
+ let  speakingSession = new Product("SpeakingSession", "1 hour", "40");
+ let  consultancy = new Product("One-to-one Consultancy", "1 hour", "40");
+ let  writingGuide = new Product("Writing Guide", "", "40");
+
+// console.log(ieltsCourse.name)
+// console.log(speakingSession.duration)
+
+// console.log(ieltsCourse.sayGoodbye());
+console.log(ieltsCourse.calculateTotal(consultancy.cost, ieltsCourse.cost));
+
+// // ---------------------------------------------------
