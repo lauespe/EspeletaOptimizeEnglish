@@ -66,6 +66,10 @@
     background-color: #105e88;
 }
 
+form {
+    width: 30%;
+    margin-left: 20px;
+}
 
 footer {
     background: linear-gradient(to right, #55829c, #105e88, #0E4B6B);

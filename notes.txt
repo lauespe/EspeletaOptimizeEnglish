@@ -104,3 +104,340 @@ console.log(getTotal(30,3))
 console.log(ieltsCourse.calculateTotal(consultancy.cost, ieltsCourse.cost));
 
 // // ---------------------------------------------------
+
+29/10
+// ____________
+// CREO EL OBJETO PRODUCTO CON CLASE
+
+class Product {
+    constructor(name, level, duration, cost) {
+        this.name = name;
+        this.level = level;
+        this.duration = duration;
+        this.cost = parseFloat(cost);
+        this.quantity = 1;
+    }
+
+// AGREGO 5% A CADA PRECIO Y REDONDEO EL PRECIO
+
+    addInflation() {
+        this.cost = Math.round(this.cost * 1.05);
+    }
+}
+
+// CREO ARRAY VACÍO Y CARGO LOS PRODUCTOS
+
+const products = [];
+
+products.push(new Product('ieltsCourse', 'intermediate', '3 month', 80)); 
+products.push(new Product('ieltsCousex2', 'intermediate', '3 month', 140));
+products.push(new Product('writingCorrection', 'intermediate', '3 month', 50));
+products.push(new Product('speakingSession', 'intermediate', '3 month', 50));
+products.push(new Product('consultancy', 'intermediate', '3 month', 50));
+products.push(new Product('writingGuide', 'intermediate', '3 month', 35));
+
+// MUESTRO LOS PRODUCTOS DEL ARRAY
+
+for (const product of products) {
+    console.log(product.name + "-");
+}
+
+// CREO CARRITO DE COMPRAS
+
+let cart = [];
+
+// LE PIDO AL USUARIO QUE INGRESE EL PRODUCTO Y LA CANTIDAD 
+
+// const productName = prompt('Enter the product name:');
+// const quantity = parseInt(prompt('Enter the quantity:'));
+
+// CREO FUNCIÓN AGREGAR UN PRODUCTO QUE COINCIDA CON LA BÚSQUEDA. SI ESTÁ, QUE LO AGREGUE AL CARRITO Y LO MULTIPLIQUE POR LA CANTIDAD. SI NO ESTÁ, QUE AVISE QUE NO ESTÁ ESE PRODUCTO.
+
+function addToCart(productName, quantity) {
+    const product = products.find((p) => p.name === productName);
+    if (product) {
+        product.quantity = quantity; 
+        cart.push(product);
+        console.log(`${quantity} ${productName}(s) added to the cart.`);
+    } else {
+        console.log(`${productName} not found in the products list.`);
+    }
+}
+
+// AGREGO 3 PRODUCTOS AL CARRITO CON SUS CANTIDADES
+
+addToCart('ieltsCourse', 3);
+addToCart('consultancy', 2);
+addToCart('speakingSession', 1);
+
+// MUESTRO LO QUE TIENE EL CARRITO
+
+console.log('Your Cart:');
+for (const product of cart) {
+    console.log(product.name);
+}
+
+// CALCULO EL TOTAL DE LOS PRODUCTOS DEL CARRITO
+
+function calculateTotal(cart) {
+    let total = 0;
+    for (const product of cart) {
+        total += product.cost * product.quantity; 
+    }
+    return total;
+}
+
+// CALCULO Y MUESTRO EL TOTAL
+
+const total = calculateTotal(cart);
+console.log(`The total is: $${total}`);
+
+// CREO EL CART CONTAINER Y FORM  - Debería aparecer solo en el momento de una compra
+
+let cartStatus = document.getElementById("cart-status"); // Sector general del carrito
+let cartContainer = document.createElement('div'); // En este div se cargan los productos del carrito como <p>
+
+cartContainer.innerHTML = "<h5 id='cartArea'>YOUR CART:</h5>";
+cartStatus.appendChild(cartContainer);
+
+let formContainer = document.createElement('div');
+formContainer.innerHTML = `
+  <h5 id="form">SIGN IN</h5>
+  <form id="form">
+    <div class="form-group">
+      <label for="name">USER NAME</label>
+      <input type="text" class="form-control" id="form-number" aria-describedby="name"><br>
+      <label for="exampleInputPassword1">PASSWORD</label>
+      <input type="password" class="form-control" id="form-password">
+    </div><br>
+    <button type="submit" class="btn btn-info">Submit</button>
+  </form>
+`;
+cartStatus.appendChild(formContainer);
+
+// ----------------------------------------
+
+let addCourse = document.getElementById("add-course");
+addCourse.addEventListener('click', () => {
+
+    let newProduct = document.createElement('p');
+    newProduct.innerText = "   * IELTS Course - $100"; 
+    cartContainer.appendChild(newProduct);
+});
+document.getElementById("info-course").addEventListener("click", function() {
+    let infoCourseTab = "http://127.0.0.1:5500/pages/courses.html";  
+    window.open(infoCourseTab, "_blank");
+});
+
+// ----------------------------------------
+
+let addCoursex2 = document.getElementById("add-coursex2");
+addCoursex2.addEventListener('click', () => {
+
+    let newProduct = document.createElement('p');
+    newProduct.innerText = "   * IELTS COURSE X 2: - $170"; 
+    cartContainer.appendChild(newProduct);
+});
+document.getElementById("info-coursex2").addEventListener("click", function() {
+    let infoCoursex2Tab = "http://127.0.0.1:5500/pages/infoCoursex2.html";  
+    window.open(infoCoursex2Tab, "_blank");
+});
+
+// ----------------------------------------
+
+let addWriting = document.getElementById("add-writing");
+addWriting.addEventListener('click', () => {
+
+    let newProduct = document.createElement('p');
+    newProduct.innerText = "   * WRITING CORRECTION: - $80"; 
+    cartContainer.appendChild(newProduct);
+});
+document.getElementById("info-writing").addEventListener("click", function() {
+    let infoWritingTab = "http://127.0.0.1:5500/pages/infoWriting.html";  
+    window.open(infoWritingTab, "_blank");
+});
+
+
+// ----------------------------------------
+
+
+let addSpeaking = document.getElementById("add-speaking");
+addSpeaking.addEventListener('click', () => {
+
+    let newProduct = document.createElement('p');
+    newProduct.innerText = "   * SPEAKING SESSION: - $80"; 
+    cartContainer.appendChild(newProduct);
+});
+document.getElementById("info-speaking").addEventListener("click", function() {
+    let infoSpeakingTab = "http://127.0.0.1:5500/pages/infoSpeaking.html";  
+    window.open(infoSpeakingTab, "_blank");
+});
+
+// ----------------------------------------
+
+
+
+let addConsultancy = document.getElementById("add-consultancy");
+addConsultancy.addEventListener('click', () => {
+
+    let newProduct = document.createElement('p');
+    newProduct.innerText = "   * CONSULTANCY: - $100"; 
+    cartContainer.appendChild(newProduct);
+});
+document.getElementById("info-consultancy").addEventListener("click", function() {
+    let infoConsultancyTab = "http://127.0.0.1:5500/pages/infoConsutancy.html";  
+    window.open(infoConsultancyTab, "_blank");
+});
+
+
+
+// localstorage()
+//localstorage()
+
+PARA AGREGAR LA CANTIDAD DE PRODUCTOS
+function addToCart(productName, quantity) {
+    const product = products.find((p) => p.name === productName);
+    if (product) {
+        product.quantity = quantity; 
+        cart.push(product);
+        console.log(`${quantity} ${productName}(s) added to the cart.`);
+    } else {
+        console.log(`${productName} not found in the products list.`);
+    }
+}
+
+
+
+class Product {
+    constructor(name, level, duration, cost) {
+        this.name = name;
+        this.level = level;
+        this.duration = duration;
+        this.cost = parseFloat(cost);
+        this.quantity = 1;
+    }
+
+// AGREGO 5% A CADA PRECIO Y REDONDEO EL PRECIO
+
+    addInflation() {
+        this.cost = Math.round(this.cost * 1.05);
+    }
+}
+
+const products = [];
+
+products.push(new Product('ieltsCourse', 'intermediate', '3 month', 80)); 
+products.push(new Product('ieltsCousex2', 'intermediate', '3 month', 140));
+products.push(new Product('writingCorrection', 'intermediate', '3 month', 50));
+products.push(new Product('speakingSession', 'intermediate', '3 month', 50));
+products.push(new Product('consultancy', 'intermediate', '3 month', 50));
+products.push(new Product('writingGuide', 'intermediate', '3 month', 35));
+
+for (const product of products) {
+    console.log(product.name + "-");
+}
+let cart = [];
+
+function calculateTotal(cart) {
+    let total = 0;
+    for (const product of cart) {
+        total += product.cost;
+    }
+    return total;
+}
+
+function addProductToCart(productName, price) {
+    let newProduct = document.createElement('p');
+    newProduct.innerText = `* ${productName} - $${price}`;
+    const cartProducts = document.getElementById("cartProducts"); // Select the cartProducts container
+    cartProducts.appendChild(newProduct); // Append to cartProducts
+    
+    // Calculate and update the total
+    const cart = getCartContents(); // Replace this with your actual function to get cart contents
+    const total = calculateTotal(cart);
+    const checkoutTotal = document.getElementById("checkoutTotal");
+    checkoutTotal.innerText = `Total: $${total}`;
+}
+let addCourse = document.getElementById("add-course");
+addCourse.addEventListener('click', () => {
+    addProductToCart('IELTS Course', 100);
+});
+
+let addCoursex2 = document.getElementById("add-coursex2");
+addCoursex2.addEventListener('click', () => {
+    addProductToCart('IELTS COURSE X 2', 170);
+});
+
+let addWriting = document.getElementById("add-writing");
+addWriting.addEventListener('click', () => {
+    addProductToCart('WRITING CORRECTION', 80);
+});
+
+let addSpeaking = document.getElementById("add-speaking");
+addSpeaking.addEventListener('click', () => {
+    addProductToCart('SPEAKING SESSION', 80);
+});
+
+let addConsultancy = document.getElementById("add-consultancy");
+addConsultancy.addEventListener('click', () => {
+    addProductToCart('CONSULTANCY', 100);
+});
+
+let formContainer = document.createElement('div');
+formContainer.innerHTML = `
+  <h5 id="form">SIGN IN</h5>
+  <form id="form">
+    <div class="form-group">
+      <label for="name">USER NAME</label>
+      <input type="text" class="form-control" id="form-number" aria-describedby="name"><br>
+      <label for="exampleInputPassword1">PASSWORD</label>
+      <input type="password" class="form-control" id="form-password">
+    </div><br>
+    <button type="submit" class="btn btn-info">Submit</button>
+  </form>
+`;
+checkout.appendChild(formContainer);
+
+
+
+????
+// class Product {
+//     constructor(name, level, duration, cost) {
+//         this.name = name;
+//         this.level = level;
+//         this.duration = duration;
+//         this.cost = parseFloat(cost);
+//     }
+
+//     addInflation() {
+//         this.cost = Math.round(this.cost * 1.05);
+//     }
+// }
+
+// const products = [];
+
+// products.push(new Product('ieltsCourse', 'intermediate', '3 month', 80)); 
+// products.push(new Product('ieltsCousex2', 'intermediate', '3 month', 140));
+// products.push(new Product('writingCorrection', 'intermediate', '3 month', 50));
+// products.push(new Product('speakingSession', 'intermediate', '3 month', 50));
+// products.push(new Product('consultancy', 'intermediate', '3 month', 50));
+// products.push(new Product('writingGuide', 'intermediate', '3 month', 35));
+
+// let cart = [];
+
+// function calculateTotal(cart) {
+//     let total = 0;
+//     for (const product of cart) {
+//         total += product.cost;
+//     }
+//     return total;
+// }
+// const total = calculateTotal(cart);
+// const totalElement = document.getElementById('total');
+// totalElement.innerText = `Total: $${total}`;
+
+// let cartArea = document.getElementById("cart-area"); // Sector general del carrito
+// let cartProducts = document.createElement('div'); // En este div se cargan los productos del carrito como <p>
+
+// cartProducts.innerHTML = "<h5 id='cartArea'>YOUR CART:</h5>";
+// cartArea.appendChild(cartProducts);
