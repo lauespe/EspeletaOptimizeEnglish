@@ -51,26 +51,71 @@ function updateCart() {
 let addCourse = document.getElementById("add-course");
 addCourse.addEventListener('click', () => {
     addToCart('IELTS Course');
+
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your IELTS Course has been added to the cart.",
+        showConfirmButton: false,
+        timer: 1500
+    });
+    
 });
 
 let addCoursex2 = document.getElementById("add-coursex2");
 addCoursex2.addEventListener('click', () => {
     addToCart('IELTS COURSE X 2');
+    
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your IELTS Course x2 has been added to the cart.",
+        showConfirmButton: false,
+        timer: 1500
+    });
+    
 });
 
 let addWriting = document.getElementById("add-writing");
 addWriting.addEventListener('click', () => {
     addToCart('Writing Correction');
+    
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your Writing correction Service has been added to the cart.",
+        showConfirmButton: false,
+        timer: 1500
+    });
+    
 });
 
 let addSpeaking = document.getElementById("add-speaking");
 addSpeaking.addEventListener('click', () => {
     addToCart('Speaking Session');
+    
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your Speaking session has been added to the cart.",
+        showConfirmButton: false,
+        timer: 1500
+    });
+    
 });
 
 let addConsultancy = document.getElementById("add-consultancy");
 addConsultancy.addEventListener('click', () => {
     addToCart('Consultancy');
+    
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your One-to-one consultancy has been added to the cart.",
+        showConfirmButton: false,
+        timer: 1500
+    });
+    
 });
 
 // CREO LAS SECCIONES DONDE SE VA A MOSTRAR LO COMPRADO (va a apareer cuando se se cliquée en add...)
@@ -177,4 +222,7 @@ let emailLS = localStorage.getItem('email');
 let productsLS = JSON.parse(localStorage.getItem('products'));
 let cartLS = JSON.parse(localStorage.getItem('cart'));
 
+
+
+// FETCH (pending)
 
